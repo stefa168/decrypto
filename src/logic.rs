@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
@@ -40,4 +42,13 @@ enum GameState {
 pub struct State {
     username: String,
     game: GameState,
+}
+
+#[derive(Hash, Eq, PartialEq)]
+pub struct RoomName(String);
+
+impl Display for RoomName {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.0)
+    }
 }
