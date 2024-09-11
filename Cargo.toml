@@ -1,0 +1,17 @@
+[package]
+name = "crypto"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.7.5", features = ["ws"] }
+axum-typed-websockets = "0.6.0"
+futures = "0.3.30"
+gloo-console = "0.3.0"
+gloo-net = "0.6.0"
+gloo-storage = "0.3.0"
+serde = "1.0.210"
+tokio = { version = "1.40.0", features = ["full"] }
+tracing-subscriber = "0.3.18"
+wasm-bindgen-futures = "0.4.43"
+yew = { version = "0.21.0", features = ["csr"] }
