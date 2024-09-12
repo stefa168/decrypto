@@ -17,7 +17,7 @@
         (pkgs.rust-bin.stable.latest.default.override {
           targets = ["wasm32-unknown-unknown"];
         })
-        pkgs.trunk
+        #pkgs.dioxus-cli
       ];
       RUST_SRC_PATH = pkgs.rustPlatform.rustLibSrc;
     };

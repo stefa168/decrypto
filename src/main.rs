@@ -1,23 +1,33 @@
-use html::RenderError;
-use yew::prelude::*;
+#![allow(non_snake_case)]
 
-use futures::{SinkExt, StreamExt};
-use gloo_console::{assert, log};
-use gloo_net::websocket::{futures::WebSocket, Message};
-use gloo_storage::{LocalStorage, Storage};
-use wasm_bindgen_futures::spawn_local;
+use dioxus::prelude::*;
+use dioxus_logger::tracing::{info, Level};
 
 mod logic;
 mod messages;
-mod server;
-
-#[function_component(App)]
-fn app() -> Result<Html, RenderError> {
-    Ok(html! {
-        <h1>{ LocalStorage::get::<String>("adad").unwrap() }</h1>
-    })
-}
+// mod server;
 
 fn main() {
-    yew::Renderer::<App>::new().render();
+    // Init logger
+    dioxus_logger::init(Level::INFO).expect("failed to init logger");
+    info!("starting app");
+    launch(App);
+}
+
+#[component]
+fn App() -> Element {
+    // Build cool things ✌️
+
+    rsx! {
+        link { rel: "stylesheet", href: "main.css" }
+        img { src: "header.svg", id: "header" }
+        div { id: "links",
+            a { target: "_blank", href: "https://dioxuslabs.com/learn/0.5/", "📚 Learn Dioxus" }
+            a { target: "_blank", href: "https://dioxuslabs.com/awesome", "🚀 Awesome Dioxus" }
+            a { target: "_blank", href: "https://github.com/dioxus-community/", "📡 Community Libraries" }
+            a { target: "_blank", href: "https://github.com/DioxusLabs/dioxus-std", "⚙️ Dioxus Standard Library" }
+            a { target: "_blank", href: "https://marketplace.visualstudio.com/items?itemName=DioxusLabs.dioxus", "💫 VSCode Extension" }
+            a { target: "_blank", href: "https://discord.gg/XgGxMSkvUM", "👋 Community Discord" }
+        }
+    }
 }
